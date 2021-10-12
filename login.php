@@ -1,59 +1,55 @@
-
 <?php
-
-include 'config.php';
-
-
-
-
-if (isset($_POST['submit'])) {
-    $username = $_POST['username'];
-    $password = md5($_POST['password']);
-
-    $sql = "SELECT * FROM users WHERE username='$username' AND password='$password'";
-    $result = mysqli_query($conn, $sql);
-    if ($result->num_rows > 0) {
-        $row = mysqli_fetch_assoc($result);
-        $_SESSION['username'] = $row['username'];
-        header("Location: index.php");
-    } else {
-        echo "<script>alert('Woops! Username or Password is Wrong.')</script>";
-    }
-}
-
+session_start();
 ?>
 
-<!DOCTYPE html>
-<html lang="">
-<head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<?php
+require_once("libs/db.php");
+if(isset($_POST["btn_login"])){
+    $username = $_POST["username"];
+    $password = $_POST["password"];
 
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    $username = strip_tags($username);
+    $username = addslashes($username);
+    $password = strip_tags($password);
+    $password = addslashes($password);
+    if ($username == "" || $password =="") {?><script>
+        alert("username và password bạn không được để trống!")
+    </script>
+        <?php
+    }
+    else{
+        $sql = "SELECT * FROM users WHERE username = '$username'";
+        $result = mysqli_query($link,$sql);
+        if(!$result || (mysqli_num_rows($result) < 1)){?>
+            <script>
+                alert("Username không đúng");
+            </script>
+            <?php
+        }
+        $dbarray = mysqli_fetch_array($result);
 
-    <link rel="stylesheet" type="text/css" href="style.css">
+        if(password_verify($password,$dbarray["password"])){
+            $_SESSION['username'] = $username;
+            $_SESSION['password'] = $password;
 
-    <title>Login Form - Pure Coding</title>
-</head>
-<body>
-<div class="container">
-    <form action="" method="POST" class="login-email">
-        <p class="login-text" style="font-size: 2rem; font-weight: 800;">Login</p>
-        <div class="input-group">
-            <label>
-                <input type="text" name="username" placeholder="Username"  required >
-            </label>
-        </div>
-        <div class="input-group">
-            <label>
-                <input type="password" placeholder="Password" name="password" required>
-            </label>
-        </div>
-        <div class="input-group">
-            <button name="submit" class="btn">Login</button>
-        </div>
-        <p class="login-register-text">Don't have an account? <a href="register.php">Register Here</a>.</p>
-    </form>
-</div>
-</body>
-</html>
+            header('Location:admin/manageFilm.php');
+            // phân quyền
+//            if($dbarray['usertype'] == 99){
+//                header('Location:admin/manageFilm.php');
+//            }
+//            else{
+//                //member
+//                header('Location:index.php');
+//            }
+        }
+        else{
+            header('Location:index.php');
+            ?>
+            <script>
+                alert('Password failure');
+            </script>
+            <?php
+        }
+    }
+}
+?>
