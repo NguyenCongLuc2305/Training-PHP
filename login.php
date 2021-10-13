@@ -1,7 +1,6 @@
 <?php
 session_start();
 ?>
-
 <?php
 require_once("libs/db.php");
 if(isset($_POST["btn_login"])){
@@ -32,7 +31,14 @@ if(isset($_POST["btn_login"])){
             $_SESSION['username'] = $username;
             $_SESSION['password'] = $password;
 
+
             header('Location:admin/manageFilm.php');
+            ?>
+                <script>
+                    alert('Login Success !!!')
+                </script>
+            <?php
+
             // phân quyền
 //            if($dbarray['usertype'] == 99){
 //                header('Location:admin/manageFilm.php');
@@ -41,12 +47,13 @@ if(isset($_POST["btn_login"])){
 //                //member
 //                header('Location:index.php');
 //            }
+
         }
         else{
             header('Location:index.php');
             ?>
             <script>
-                alert('Password failure');
+                alert('Login failure');
             </script>
             <?php
         }
