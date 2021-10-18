@@ -97,9 +97,7 @@ $mod='';
         else
             echo 'Invalid URL';
         ?>
-<!--        --><?php
-//        include("sidebar.php");
-//        ?>
+
     </div>
     <?php
     include("footer.php");

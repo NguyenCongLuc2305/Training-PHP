@@ -1,6 +1,7 @@
 <?php
 session_start();
 ?>
+
 <?php
 require_once("libs/db.php");
 if(isset($_POST["btn_login"])){
@@ -11,9 +12,11 @@ if(isset($_POST["btn_login"])){
     $username = addslashes($username);
     $password = strip_tags($password);
     $password = addslashes($password);
-    if ($username == "" || $password =="") {?><script>
+    if ($username == "" | $password == "") {?><script>
         alert("username và password bạn không được để trống!")
+        alert("Location:index.php");
     </script>
+
         <?php
     }
     else{
@@ -39,21 +42,13 @@ if(isset($_POST["btn_login"])){
                 </script>
             <?php
 
-            // phân quyền
-//            if($dbarray['usertype'] == 99){
-//                header('Location:admin/manageFilm.php');
-//            }
-//            else{
-//                //member
-//                header('Location:index.php');
-//            }
 
         }
         else{
             header('Location:index.php');
             ?>
             <script>
-                alert('Login failure');
+                alert('Password failure');
             </script>
             <?php
         }

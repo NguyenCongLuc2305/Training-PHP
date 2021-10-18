@@ -69,8 +69,6 @@ if(isset($_POST["button_update"])){
             border: 1px solid #111 !important;
             color: #b8b8b8 !important;
         }
-
-
         .col-lg-3,
         .col-lg-7,
         .col-lg-10 {

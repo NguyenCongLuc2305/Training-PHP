@@ -6,7 +6,7 @@ $r=mysqli_fetch_assoc($query);
 ?>
 <div id="content">
     <div class="block" id="page-info">
-        <div class="lockfile breadcrumbs">
+        <div class="blocktitle breadcrumbs">
             <div class="item">
                 <a href="?mod=home" title="Xem Phim Nhanh, Xem Phim Online chất lượng cao miễn phí">
                     <span>Xem phim</span>
@@ -27,17 +27,16 @@ $r=mysqli_fetch_assoc($query);
         </div>
         <div class="info">
             <h2 class="title fr"><?php echo $r['name'] ?></h2>
-            <div class="poster"><a href="#" title="Xem phim <?php echo $r['name'] ?>"><img src="<?php echo $r['link'] ?>" alt="<?php echo $r['name'] ?>"></a></div>
-<!--            <div class="name2 fr">-->
-<!--                <h3>--><?php //echo $r['name2'] ?><!--</h3><span class="year" style="font-size:12px">(2010)</span>-->
-<!--            </div>-->
+            <?php print_r($r['image'])?>
+            <div class="poster"><a href="#" title="Xem phim <?php echo $r['name'] ?>"><img src="<?php echo $r['image'] ?>" alt="<?php echo $r['name'] ?>"></a></div>
+
             <div class="dinfo">
                 <div class="col1 fr">
                     <ul>
                         <li>Status: <span class="status1"><?php echo $r['status'] ?></span></li>
                         <li>Đạo diễn: <?php echo $r['director'] ?></li>
                         <li>Diễn viên: <?php echo $r['actor'] ?></li>
-                        <li>Thể loại: <a title="Phim Hành Động"> Phim Hành Động</a></li>
+                        <li>Thể loại: <a href="the-loai/phim-hanh-dong/" title="Phim Hành Động"> Phim Hành Động</a></li>
                     </ul>
                 </div>
                 <div class="col2">

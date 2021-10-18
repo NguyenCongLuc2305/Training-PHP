@@ -48,7 +48,7 @@ if (mysqli_num_rows($result) == 0) {
 
     <div id="wrapper">
         <?php
-        include("common.php");
+        //        include("common.php");
         ?>
         <div id="edit-film">
             <div class="row text-center">
@@ -70,7 +70,7 @@ if (mysqli_num_rows($result) == 0) {
                     </label>
                     <div class="col-md-9">
                         <input type="text" class="form-control" id="film-name" name="film-name"
-                               value="<?php echo $row["name"]; ?>">
+                               value="<?php echo $row["name"]; ?>" required>
                     </div>
                 </div>
                 <div>
@@ -79,7 +79,7 @@ if (mysqli_num_rows($result) == 0) {
                     </label>
                     <div class="col-md-9">
                         <input type="text" class="form-control" id="status" name="status"
-                               value="<?php echo $row["status"]; ?>">
+                               value="<?php echo $row["status"]; ?>" required>
                     </div>
                 </div>
                 <div>
@@ -88,7 +88,7 @@ if (mysqli_num_rows($result) == 0) {
                     </label>
                     <div class="col-md-9">
                         <input type="text" class="form-control" id="director" name="director"
-                               value="<?php echo $row["director"]; ?>">
+                               value="<?php echo $row["director"]; ?>" required>
                     </div>
                 </div>
                 <div>
@@ -97,7 +97,7 @@ if (mysqli_num_rows($result) == 0) {
                     </label>
                     <div class="col-md-9">
                         <input type="text" class="form-control" id="actor" name="actor"
-                               value="<?php echo $row["actor"]; ?>">
+                               value="<?php echo $row["actor"]; ?>" required>
                     </div>
                 </div>
                 <div>
@@ -193,33 +193,57 @@ if (mysqli_num_rows($result) == 0) {
                         </select>
                     </div>
                 </div>
+
                 <div>
-                    <label for="link" class="col-md-2">
+                    <label for="file" class="col-md-2">
                         Link phim
                     </label>
                     <div class="col-md-9">
-                        <input type="file" name="image_name" id="image_name" onchange="alertName()"/>
-                        <label for="image_link"></label><input type="text" class="form-control" id="image_link"
-                                                               name="link" value="<?php echo $row["link"] ?>">
+                        <input type="file" name="file" id="link_movie" onchange="alertLink()"/>
+                        <label for="movie_link"></label><input type="text" class="form-control" id="movie_link"
+                                                               name="file" value="<?php echo $row['file'] ?>" required>
                         <p class="help-block">
-                            Ví dụ: /images/cuoc-chien-vo-cuc.mp4
+                            Ví dụ: cuoc-chien-vo-cuc.mp4
+                        </p>
+                        <script>
+                            function alertLink() {
+                                var link = document.getElementById("link_movie").value;
+                                var n = link.lastIndexOf('\\');
+                                var result_link = link.substring(n + 1);
+                                document.getElementById("movie_link").value = result_link;
+                            }
+                        </script>
+                    </div>
+                </div>
+                <div>
+                    <label for="image" class="col-md-2">
+                        Link ảnh
+                    </label>
+                    <div class="col-md-9">
+                        <input type="file" name="image" id="image_name" onchange="alertName()"/>
+                        <label for="image_link"></label><input type="text" class="form-control" id="image_link"
+                                                               name="image" value="<?php echo $row['image'] ?>"
+                                                               required>
+                        <p class="help-block">
+                            Ví dụ: cuoc-chien-vo-cuc.jpg
                         </p>
                         <script>
                             function alertName() {
                                 var name = document.getElementById("image_name").value;
                                 var n = name.lastIndexOf('\\');
                                 var result = name.substring(n + 1);
-                                document.getElementById("image_link").value = "image/" + result;
+                                document.getElementById("image_link").value = result;
                             }
                         </script>
                     </div>
                 </div>
+
                 <div>
                     <label for="decription" class="col-md-2">
                         Mô tả phim
                     </label>
                     <div class="col-md-9" style="color: black">
-                        <textarea name="decription" id="decription" cols="82"
+                        <textarea name="decription" id="decription" cols="82" required
                                   rows="10"><?php echo $row["description"]; ?></textarea>
                     </div>
 
@@ -230,7 +254,7 @@ if (mysqli_num_rows($result) == 0) {
                     </label>
                     <div class="col-md-9">
                         <input type="number" class="form-control" id="duration" name="duration"
-                               value="<?php echo $row["duration"]; ?>">
+                               value="<?php echo $row["duration"]; ?>" required>
                     </div>
                 </div>
                 <div>
@@ -239,7 +263,7 @@ if (mysqli_num_rows($result) == 0) {
                     </label>
                     <div class="col-md-9">
                         <input type="text" class="form-control" id="author" name="author"
-                               value="<?php echo $row["author"]; ?>">
+                               value="<?php echo $row["author"]; ?>" required>
                     </div>
                 </div>
 
@@ -258,8 +282,33 @@ if (mysqli_num_rows($result) == 0) {
 
 
 <?php
+
+
 require_once("libs/db.php");
 if (isset($_POST["button_update"])){
+
+///upload video
+$target_dir = "uploads/movies/";
+$target_file = $target_dir . basename($_FILES["file"]["name"]);
+$uploadOk = 1;
+$imageFileType = strtolower(pathinfo($target_file, PATHINFO_EXTENSION));
+if (move_uploaded_file($_FILES["file"]["tmp_name"], $target_file)) {
+    echo "The file " . htmlspecialchars(basename($_FILES["file"]["name"])) . " has been uploaded.";
+} else {
+    echo "Sorry, there was an error uploading your file.";
+}
+
+//upload image
+$target_dir_image = "uploads/images/";
+$target_file_image = $target_dir_image . basename($_FILES["image"]["name"]);
+$uploadOk_image = 1;
+$imageFileType_image = strtolower(pathinfo($target_file_image, PATHINFO_EXTENSION));
+if (move_uploaded_file($_FILES["image"]["tmp_name"], $target_file_image)) {
+    echo "The file " . htmlspecialchars(basename($_FILES["image"]["name"])) . " has been uploaded.";
+} else {
+    echo "Sorry, there was an error uploading your file.";
+}
+
 $name = $_POST["film-name"];
 $status = $_POST["status"];
 $director = $_POST["director"];
@@ -268,11 +317,11 @@ $category = $_POST["category"];
 $type_movie = $_POST["type_movie"];
 $nation = $_POST["nation"];
 $year = $_POST["year"];
-$link_image = $_POST["link"];
-$link_film = '';
+$link_movie = $_POST["file"];
 $description = $_POST["decription"];
 $duration = $_POST["duration"];
 $author = $_POST["author"];
+$link_image = $_POST["image"];
 
 //thực hiện việc lưu trữ dữ liệu vào db
 $sql = "SELECT * FROM film WHERE ID = '$filmID'";
@@ -292,10 +341,11 @@ $sql = "UPDATE film SET
                     category_id='$category',
                     type_id='$type_movie',
                     nation_id='$nation',
-                    link='$link_image',
+                    link='$link_movie',
                     description='$description',
                     duration='$duration',
-                    author='$author'
+                    author='$author',
+                    image='$link_image'
                 WHERE id = $filmID";
 $result = mysqli_query($link, $sql);
 

@@ -59,27 +59,20 @@ $result = mysqli_query($link, $sql);
 ?>
 <div id="wrapper">
     <?php
-    include("common.php");
+//    include("common.php");
     ?>
     <div class="container" id="post_film" style="padding: 0 15%">
         <div class="row text-center" style="margin: 20px 0px;">
             <h2 class="title">Thêm Phim</h2>
         </div>
-        <form method="post" id="form-insert-film" name="form-insert-film" class="form-horizontal" action="" role="form" >
-            <!-- <div>
-                        <label for="ID-film" class="col-md-2">
-                            ID phim
-                        </label>
-                        <div class="col-md-9">
-                            <input type="text" class="form-control" id="ID-film" value="<?php echo "auto increase";?>">
-                        </div>
-                    </div> -->
+        <form method="post" id="form-insert-film" name="form-insert-film" class="form-horizontal" action="" role="form" enctype="multipart/form-data" >
+
             <div>
                 <label for="film-name" class="col-md-2">
                     Tên phim
                 </label>
                 <div class="col-md-9">
-                    <input type="text" class="form-control" id="film-name" name="film-name">
+                    <input type="text" class="form-control" id="film-name" name="film-name" required>
                 </div>
             </div>
             <div>
@@ -87,7 +80,7 @@ $result = mysqli_query($link, $sql);
                     Trạng thái
                 </label>
                 <div class="col-md-9">
-                    <input type="text" class="form-control" id="status" name="status">
+                    <input type="text" class="form-control" id="status" name="status" required>
                 </div>
             </div>
             <div>
@@ -95,7 +88,7 @@ $result = mysqli_query($link, $sql);
                     Đạo diễn
                 </label>
                 <div class="col-md-9">
-                    <input type="text" class="form-control" id="director" name="director">
+                    <input type="text" class="form-control" id="director" name="director" required>
                 </div>
             </div>
             <div>
@@ -103,7 +96,7 @@ $result = mysqli_query($link, $sql);
                     Diễn viên
                 </label>
                 <div class="col-md-9">
-                    <input type="text" class="form-control" id="actor" name="actor">
+                    <input type="text" class="form-control" id="actor" name="actor" required>
                 </div>
             </div>
             <div>
@@ -196,21 +189,41 @@ $result = mysqli_query($link, $sql);
                 </div>
             </div>
             <div>
-                <label for="link" class="col-md-2">
+                <label for="file" class="col-md-2">
                     Link phim
                 </label>
                 <div class="col-md-9">
-                    <input type="file" name="image_name" id="image_name" onchange="alertName()"/>
-                    <label for="image_link"></label><input type="text" class="form-control" id="image_link" name="link" >
+                    <input type="file" name="file" id="link_movie" onchange="alertLink()"  />
+                    <label for="movie_link"></label><input type="text" class="form-control" id="movie_link" name="file" required >
                     <p class="help-block">
-                        Ví dụ: /images/cuoc-chien-vo-cuc.mp4
+                        Ví dụ: cuoc-chien-vo-cuc.mp4
+                    </p>
+                    <script>
+                        function alertLink() {
+                            var link =  document.getElementById("link_movie").value;
+                            var n = link.lastIndexOf('\\');
+                            var result_link = link.substring(n + 1);
+                            document.getElementById("movie_link").value = result_link;
+                        }
+                    </script>
+                </div>
+            </div>
+            <div>
+                <label for="image" class="col-md-2">
+                    Link ảnh
+                </label>
+                <div class="col-md-9">
+                    <input type="file" name="image" id="image_name" onchange="alertName()"/>
+                    <label for="image_link"></label><input type="text" class="form-control" id="image_link" name="image" required >
+                    <p class="help-block">
+                        Ví dụ: cuoc-chien-vo-cuc.jpg
                     </p>
                     <script>
                         function alertName() {
                             var name =  document.getElementById("image_name").value;
                             var n = name.lastIndexOf('\\');
                             var result = name.substring(n + 1);
-                            document.getElementById("image_link").value = "image/" + result;
+                            document.getElementById("image_link").value = result;
                         }
                     </script>
                 </div>
@@ -220,7 +233,7 @@ $result = mysqli_query($link, $sql);
                     Mô tả phim
                 </label>
                 <div class="col-md-9" style="color: black">
-                    <textarea name="decription" id="decription" cols="82" rows="10"></textarea>
+                    <textarea name="decription" id="decription" cols="82" rows="10" required></textarea>
                 </div>
 
             </div>
@@ -229,7 +242,7 @@ $result = mysqli_query($link, $sql);
                     Thời lượng (phút)
                 </label>
                 <div class="col-md-9">
-                    <input type="number" class="form-control" id="duration" name="duration">
+                    <input type="number" class="form-control" id="duration" name="duration" required>
                 </div>
             </div>
             <div>
@@ -237,7 +250,7 @@ $result = mysqli_query($link, $sql);
                     Tác giả
                 </label>
                 <div class="col-md-9">
-                    <input type="text" class="form-control" id="author" name="author">
+                    <input type="text" class="form-control" id="author" name="author" required>
                 </div>
             </div>
 
@@ -245,7 +258,6 @@ $result = mysqli_query($link, $sql);
             <div class="row">
                 <div class="col-md-9"></div>
                 <div class="col-md-3">
-                    <!-- <input class="btn btn-primary" type="submit" value="Post"> -->
                     <button type="submit" class="btn btn-primary" id="button_post" name="button_post">Đăng phim </button>
                 </div>
             </div>
@@ -255,7 +267,31 @@ $result = mysqli_query($link, $sql);
 </div>
 
 <?php
+
 if(isset($_POST["button_post"])){
+
+    ///upload video
+    $target_dir = "uploads/movies/";
+    $target_file = $target_dir . basename($_FILES["file"]["name"]);
+    $uploadOk = 1;
+    $imageFileType = strtolower(pathinfo($target_file,PATHINFO_EXTENSION));
+    if (move_uploaded_file($_FILES["file"]["tmp_name"], $target_file)) {
+        echo "The file ". htmlspecialchars( basename( $_FILES["file"]["name"])). " has been uploaded.";
+    } else {
+        echo "Sorry, there was an error uploading your file.";
+    }
+
+    //upload image
+    $target_dir_image = "uploads/images/";
+    $target_file_image = $target_dir_image . basename($_FILES["image"]["name"]);
+    $uploadOk_image = 1;
+    $imageFileType_image = strtolower(pathinfo($target_file_image,PATHINFO_EXTENSION));
+    if (move_uploaded_file($_FILES["image"]["tmp_name"], $target_file_image)) {
+        echo "The file ". htmlspecialchars( basename( $_FILES["image"]["name"])). " has been uploaded.";
+    } else {
+        echo "Sorry, there was an error uploading your file.";
+    }
+
     $name = $_POST["film-name"];
     $status = $_POST["status"];
     $director = $_POST["director"];
@@ -264,16 +300,17 @@ if(isset($_POST["button_post"])){
     $type_movie = $_POST["type_movie"];
     $nation = $_POST["nation"];
     $year = $_POST["year"];
-    $link_image = $_POST["link"];
-    $link_film = '';
+    $link_movie = $_POST["file"];
     $description = $_POST["decription"];
     $duration = $_POST["duration"];
     $author = $_POST["author"];
+    $link_image = $_POST["image"];
 
-    $sql = "INSERT INTO film(name,status,director,actor,category_id,type_id,nation_id,year,link,description,duration,author)            
-            VALUES ('$name','$status','$director','$actor','$category','$type_movie','$nation','$year','$link_image','$description','$duration','$author')";
+    $sql = "INSERT INTO film(name,status,director,actor,category_id,type_id,nation_id,year,file,description,duration,author,image)            
+            VALUES ('$name','$status','$director','$actor','$category','$type_movie','$nation','$year','$link_movie','$description','$duration','$author','$link_image')";
+
     $result = mysqli_query($link,$sql);
-    var_dump($result);
+
     if($result){?>
         <script>
             alert("Insert film sucessfully!");

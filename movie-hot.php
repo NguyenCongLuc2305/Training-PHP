@@ -2,14 +2,13 @@
     <div class="prev"></div>
     <ul class="listfilm overview owl-carousel owl-theme">
         <?php
-        $sql = 'select * from `film` order by `num_view` DESC limit 8';
+        $sql = 'select * from `film` order by `id`';
         $query = mysqli_query($link, $sql);
         while($r=mysqli_fetch_assoc($query)){
             ?>
-            <li class="item"><a href="?mod=detail&film_id=<?php echo $r['id'] ?>" title="<?php echo $r['name'] ?>" class="movie-hot-link" style="background-image: url(<?php echo $r['image'] ?>);">Thời Đại Cam Hồng</a>
+            <li class="item"><a href="?mod=detail&film_id=<?php echo $r['id'] ?>" title="<?php echo $r['name'] ?>" class="movie-hot-link" style="background-image: url(<?php echo $r['image'] ?>);"></a>
                 <div class="overlay">
                     <div class="name"><a href="?mod=detail&film_id=<?php echo $r['id'] ?>" title="<?php echo $r['name'] ?>"><?php echo $r['name'] ?></a></div>
-<!--                    <div class="name2">--><?php //echo $r['name2'] ?><!--</div>-->
                 </div>
                 <div class="status"><?php echo $r['status'] ?></div>
             </li>

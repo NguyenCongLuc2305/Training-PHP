@@ -47,7 +47,6 @@ require('libs/db.php');
                 $qry = isset($_POST["qry"]) ? $_POST["qry"] : '';
 
                 $sql_name = "SELECT * FROM film WHERE name LIKE '%{$qry}%'";
-//                $sql_name2 = "SELECT * FROM film WHERE name2 LIKE '%{$qry}%'";
                 $sql_director = "SELECT * FROM film WHERE director LIKE '%{$qry}%'";
                 $sql_actor = "SELECT * FROM film WHERE actor LIKE '%{$qry}%'";
                 $sql_description = "SELECT * FROM film WHERE description LIKE '%{$qry}%'";

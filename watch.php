@@ -1,6 +1,5 @@
 <?php
 if (isset($_GET['film_id'])) $film_id = $_GET['film_id'];
-if (isset($_GET['episode'])) $episode = $_GET['episode'];
 $sql = "select * from `film` where `id` = '$film_id'";
 $query= mysqli_query($link, $sql);
 $r=mysqli_fetch_assoc($query);
@@ -40,7 +39,8 @@ $r=mysqli_fetch_assoc($query);
         <div class="row body_video">
             <div class="col-sm-12">
                 <video width="100%" height="100%" controls>
-                    <source src="<?php echo $r['content'] ?>" type="video/mp4">
+                   <?php print_r($r['link']) ?>
+                    <source src="<?php echo $r['link'] ?>" type="video/mp4">
                     <!-- <src="https://www.w3schools.com/tags/movie.mp4" type="video/mp4"> -->
                     Your browser does not support the video tag.
                 </video>
