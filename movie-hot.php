@@ -6,7 +6,7 @@
         $query = mysqli_query($link, $sql);
         while($r=mysqli_fetch_assoc($query)){
             ?>
-            <li class="item"><a href="?mod=detail&film_id=<?php echo $r['id'] ?>" title="<?php echo $r['name'] ?>" class="movie-hot-link" style="background-image: url(<?php echo $r['image'] ?>);"></a>
+            <li class="item"><a href="?mod=detail&film_id=<?php echo $r['id'] ?>" title="<?php echo $r['name'] ?>" class="movie-hot-link" style="background-image: url(admin/uploads/images/<?php echo $r['image'] ?>);"></a>
                 <div class="overlay">
                     <div class="name"><a href="?mod=detail&film_id=<?php echo $r['id'] ?>" title="<?php echo $r['name'] ?>"><?php echo $r['name'] ?></a></div>
                 </div>

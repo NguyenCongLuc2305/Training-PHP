@@ -290,7 +290,7 @@ if (isset($_POST["button_update"])){
 ///upload video
 $target_dir = "uploads/movies/";
 $target_file = $target_dir . basename($_FILES["file"]["name"]);
-$uploadOk = 1;
+//$uploadOk = 1;
 $imageFileType = strtolower(pathinfo($target_file, PATHINFO_EXTENSION));
 if (move_uploaded_file($_FILES["file"]["tmp_name"], $target_file)) {
     echo "The file " . htmlspecialchars(basename($_FILES["file"]["name"])) . " has been uploaded.";
@@ -301,13 +301,14 @@ if (move_uploaded_file($_FILES["file"]["tmp_name"], $target_file)) {
 //upload image
 $target_dir_image = "uploads/images/";
 $target_file_image = $target_dir_image . basename($_FILES["image"]["name"]);
-$uploadOk_image = 1;
+//$uploadOk_image = 1;
 $imageFileType_image = strtolower(pathinfo($target_file_image, PATHINFO_EXTENSION));
 if (move_uploaded_file($_FILES["image"]["tmp_name"], $target_file_image)) {
     echo "The file " . htmlspecialchars(basename($_FILES["image"]["name"])) . " has been uploaded.";
 } else {
     echo "Sorry, there was an error uploading your file.";
 }
+
 
 $name = $_POST["film-name"];
 $status = $_POST["status"];
