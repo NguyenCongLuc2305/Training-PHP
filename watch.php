@@ -38,9 +38,8 @@ $r=mysqli_fetch_assoc($query);
         </div>
         <div class="row body_video">
             <div class="col-sm-12">
-                <video width="300px" height="350px" controls>
+                <video width="670px" height="350px" controls>
                     <source src="admin/uploads/movies/<?php echo $r['file'] ?>" type="video/mp4">
-                    <!-- <src="https://www.w3schools.com/tags/movie.mp4" type="video/mp4"> -->
                     Your browser does not support the video tag.
                 </video>
             </div>

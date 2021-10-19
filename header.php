@@ -83,7 +83,7 @@ if(isset($_POST["log_out"])){
     header('Location:index.php');
 }
 ?>
-<!-- Van modified ↑↑ -->
+<!-- Van modified ↑↑-->
 <!--<div id="nav">-->
 <!--    <ul class="container menu">-->
 <!--        <li class="home"><a href="index.php" title=""></a></li>-->

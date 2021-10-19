@@ -353,8 +353,6 @@ if (mysqli_num_rows($check) <= 0){ ?>
 <?php
 }
 else{
-    echo "luc";
-print_r("tét");
 
 $sql = "UPDATE film SET 
                     name='$name',
@@ -383,7 +381,6 @@ if ($result){
 ?>
     <script>
         alert("Edit film fail!");
-        -- >
     </script>
     <?php
 }

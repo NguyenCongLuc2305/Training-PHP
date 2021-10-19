@@ -142,7 +142,7 @@ if ($result){?>
 } else{
 ?>
     <script>
-        alert("Edit user fail!"); -->
+        alert("Edit user fail!");
     </script>
     <?php
 }
