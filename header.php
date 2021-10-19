@@ -31,7 +31,7 @@
                 <div class="links"><a rel="nofollow" href="register.php">Đăng ký thành viên</a></div>
 
             <?php } else {?>
-            <!-- <div class="login"><a rel="nofollow" href="" name="log_out">Đăng xuất</a></div> -->
+
             <form method="post" action="">
                 <button id="logout" name="log_out">Đăng xuất</button>
                 <a rel="nofollow" href="info_account.php">Thay đổi thông tin</a></div>

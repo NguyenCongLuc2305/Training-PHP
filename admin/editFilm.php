@@ -54,7 +54,7 @@ if (mysqli_num_rows($result) == 0) {
             <div class="row text-center">
                 <h2>Chỉnh sửa film</h2>
             </div>
-            <form method="post" id="form-insert-film" name="form-insert-film" class="form-horizontal" action=""
+            <form method="post" id="form-insert-film" name="form-insert-film" class="form-horizontal" enctype="multipart/form-data" action=""
                   role="form">
                 <div>
                     <label for="ID-film" class="col-md-2">
@@ -185,6 +185,7 @@ if (mysqli_num_rows($result) == 0) {
                         Năm phát hành
                     </label>
                     <div class="col-md-9">
+<!--                        <input type="date" name="year" id="year" style="color: black">-->
                         <select id="year" name="year" id="year" style="color: black">
                             <option value="2018" <?php echo ($row["year"] == 2018) ? "selected" : "" ?>>2018</option>
                             <option value="2019" <?php echo ($row["year"] == 2019) ? "selected" : "" ?>>2019</option>
@@ -283,9 +284,28 @@ if (mysqli_num_rows($result) == 0) {
 
 <?php
 
-
 require_once("libs/db.php");
+
 if (isset($_POST["button_update"])){
+
+
+//delete video from directory
+
+$path = "uploads/movies/". basename($row['file']);
+if (unlink($path)){
+    echo 'The file ' . $path . ' was deleted successfully!';
+} else {
+    echo 'There was a error deleting the file ' . $path;
+}
+
+//delete image from directory
+
+$fileName = "uploads/images/". basename($row['image']);
+if (unlink($fileName)){
+    echo 'The file ' . $fileName . ' was deleted successfully!';
+} else {
+    echo 'There was a error deleting the file ' . $fileName;
+}
 
 ///upload video
 $target_dir = "uploads/movies/";
@@ -308,7 +328,6 @@ if (move_uploaded_file($_FILES["image"]["tmp_name"], $target_file_image)) {
 } else {
     echo "Sorry, there was an error uploading your file.";
 }
-
 
 $name = $_POST["film-name"];
 $status = $_POST["status"];
@@ -334,6 +353,9 @@ if (mysqli_num_rows($check) <= 0){ ?>
 <?php
 }
 else{
+    echo "luc";
+print_r("tét");
+
 $sql = "UPDATE film SET 
                     name='$name',
                     status='$status', 

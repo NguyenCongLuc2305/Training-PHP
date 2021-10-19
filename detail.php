@@ -54,7 +54,7 @@ $r=mysqli_fetch_assoc($query);
                 </div>
             </div>
             <div class="groups-btn">
-                <a href="?mod=watch&film_id=<?php echo $r['id'] ?>&episode=1"><div class="btn-watch fr"></div></a>
+                <a href="?mod=watch&film_id=<?php echo $r['id'] ?>&episode=1"><div class="btn-watch fr"></div>  </a>
             </div>
         </div>
         <div class="detail">
