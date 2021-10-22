@@ -72,11 +72,6 @@
 
 <?php
 if(isset($_POST["log_out"])){
-    ?>
-    <!-- <script>
-    alert("ádfghjh");
-    </script> -->
-    <?php
     unset($_SESSION['username']);
     session_unset();
     session_destroy();
@@ -84,40 +79,42 @@ if(isset($_POST["log_out"])){
 }
 ?>
 <!-- Van modified ↑↑-->
-<!--<div id="nav">-->
-<!--    <ul class="container menu">-->
-<!--        <li class="home"><a href="index.php" title=""></a></li>-->
-<!--        --><?php
-//        $sql = 'select * from `nav-menu`';
-//        $query = mysqli_query($link,$sql);
-//        while($r=mysqli_fetch_assoc($query)){
-//            ?>
-<!--            <li class=""><a>--><?php //echo $r['name']; ?><!--</a>-->
-<!--                <ul class="sub-menu" style="width: 260px; display: none;">-->
-<!--                    --><?php
-//                    $handle = $r['handle'];
-//                    $sql = 'select * from `'.$handle.'`';
-//                    $query1 = mysqli_query($link,$sql);
-//                    while($r1=mysqli_fetch_assoc($query1)){
-//                        ?>
-<!--                        --><?php
-//                        if ($handle == 'category' or $handle == 'nation') {
-//                            echo '<li class=""><a href="?mod=list&type='.$handle.'&id='.$r1['id'].'">'.$r1['name'].'</a></li>';
-//                        }
-//                        else {
-//                            echo '<li class=""><a href="?mod=list&type='.$handle.'&year='.$r1['year'].'">'.$r1['name'].'</a></li>';
-//                        }
-//                        ?>
-<!--                        --><?php
-//                    }
-//                    ?>
-<!--                </ul>-->
-<!--            </li>-->
-<!--            --><?php
-//        }
-//        ?>
-<!--    </ul>-->
-<!--</div>-->
+<div id="nav">
+    <ul class="container menu">
+        <li class="home"><a href="index.php" title=""></a></li>
+        <?php
+        $sql = 'select * from `nav-menu`';
+        $query = mysqli_query($link,$sql);
+        while($r=mysqli_fetch_assoc($query)){
+            ?>
+            <li class=""><a><?php echo $r['name']; ?></a>
+                <ul class="sub-menu" style="width: 260px; display: none;">
+                    <?php
+                    $handle = $r['handle'];
+                    if ($handle != ""){
+                    $sql = 'select * from `'.$handle.'`';
+                    $query1 = mysqli_query($link,$sql);
+                    while($r1=mysqli_fetch_assoc($query1)){
+                        ?>
+                        <?php
+                        if ($handle == 'category' or $handle == 'nation') {
+                            echo '<li class=""><a href="?mod=list&type='.$handle.'&id='.$r1['id'].'">'.$r1['name'].'</a></li>';
+                        }
+                        else {
+                            echo '<li class=""><a href="?mod=list&type='.$handle.'&year='.$r1['year'].'">'.$r1['name'].'</a></li>';
+                        }
+                        ?>
+                        <?php
+                    }
+                    }
+                    ?>
+                </ul>
+            </li>
+            <?php
+        }
+        ?>
+    </ul>
+</div>
 <div id="nav2">
     <div class="container">
         <h2 class="title">Xem phim online chất lượng cao</h2></div>

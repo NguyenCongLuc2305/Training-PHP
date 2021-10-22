@@ -24,10 +24,10 @@ if(isset($_SESSION['username'])){
         </div>
         <div class="collapse navbar-collapse navbar-ex1-collapse">
             <ul id="active" class="nav navbar-nav side-nav">
-<!--                <li>-->
-<!--                    <a href="index.php">-->
-<!--                        <i class="fa fa-bullseye"></i> Dashboard</a>-->
-<!--                </li>-->
+                <li>
+                    <a href="../index.php">
+                        <i class="fa fa-bullseye"></i> Index</a>
+                </li>
                 <li>
                     <a href="addFilm.php">
                         <i class="fa fa-plus"></i></i> Add film</a>

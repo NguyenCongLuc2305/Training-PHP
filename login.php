@@ -34,7 +34,6 @@ if(isset($_POST["btn_login"])){
             $_SESSION['username'] = $username;
             $_SESSION['password'] = $password;
 
-
             header('Location:admin/manageFilm.php');
             ?>
                 <script>

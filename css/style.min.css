@@ -22,7 +22,7 @@ body.hide {
 
 body {
   font-size: 12px;
-  background: url(../images/bgbody.png) repeat-x #000;
+  /*background: url(../images/bgbody.png) repeat-x #000;*/
   color: #ddd;
   display: block !important
 }

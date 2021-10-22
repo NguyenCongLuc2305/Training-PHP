@@ -1,5 +1,8 @@
 <div id="movie-hot" class="viewport">
-    <div class="prev"></div>
+    <a id="preTop" class="prev" rel="nofollow" style="display: block">
+        <span class="arrow-icon left"></span>
+    </a>
+
     <ul class="listfilm overview owl-carousel owl-theme">
         <?php
         $sql = 'select * from `film` order by `id`';
@@ -16,7 +19,9 @@
         }
         ?>
     </ul>
-    <div class="next"></div>
+    <a id="nextTop" class="next" rel="nofollow" style="display: block">
+        <span class="arrow-icon right"></span>
+    </a>
 </div>
 <script type="text/javascript">
     $('.overview').owlCarousel({
