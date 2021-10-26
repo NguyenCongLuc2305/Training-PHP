@@ -88,7 +88,9 @@ $mod='';
             include("movie-hot.php");
             ?>
             <?php
+
             if (isset($_GET['mod'])) {
+
                 $mod=$_GET['mod'];
             }
             if($mod=='')$mod='home';
@@ -97,6 +99,8 @@ $mod='';
                 include("{$mod}.php");
             else
                 echo 'Invalid URL';
+
+//            include ("home.php");
             ?>
             <?php
             include("sidebar.php");
