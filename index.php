@@ -79,28 +79,32 @@ $mod='';
 </style>
 <body>
 <div id="wrapper">
-    <?php
-    include("header.php");
-    ?>
-    <div id="body-wrap" class="container">
+    <div id="wrapper">
         <?php
-        include("movie-hot.php");
+        include("header.php");
         ?>
+        <div id="body-wrap" class="container">
+            <?php
+            include("movie-hot.php");
+            ?>
+            <?php
+            if (isset($_GET['mod'])) {
+                $mod=$_GET['mod'];
+            }
+            if($mod=='')$mod='home';
+            $mod=str_replace('../','',$mod);
+            if(is_file("{$mod}.php"))
+                include("{$mod}.php");
+            else
+                echo 'Invalid URL';
+            ?>
+            <?php
+            include("sidebar.php");
+            ?>
+        </div>
         <?php
-        if (isset($_GET['mod'])) {
-            $mod=$_GET['mod'];
-        }
-        if($mod=='')$mod='home';
-        $mod=str_replace('../','',$mod);
-        if(is_file("{$mod}.php"))
-            include("{$mod}.php");
-        else
-            echo 'Invalid URL';
+        include("footer.php");
         ?>
-
     </div>
-    <?php
-    include("footer.php");
-    ?>
 </div>
 </html>
