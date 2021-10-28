@@ -165,10 +165,10 @@
             <div class="tab">
                 <ul class="list-film tab ">
                     <?php
-                    $sql = 'select * from `film` where `category_id` = 9 order by `id` DESC limit 4';
+                    $sql = 'select * from `film` where `category_id` = 3 order by `id` DESC limit 4';
                     $query = mysqli_query($link, $sql);
                     while($r=mysqli_fetch_assoc($query)){
-                        ?>
+                        ?>  
                         <li data-liked="238" data-views="33,450">
                             <div class="inner"><a href="?mod=detail&film_id=<?php echo $r['id'] ?>" title="<?php echo $r['name'] ?>"><img src="admin/uploads/images/<?php echo $r['image'] ?>" alt=""></a>
                                 <div class="info">
