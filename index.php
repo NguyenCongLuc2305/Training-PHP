@@ -76,6 +76,9 @@ $mod='';
         flex-wrap: wrap;
         justify-content: center;
     }
+    #wrapper{
+        background-color: black;
+    }
 </style>
 <body>
 <div id="wrapper">
