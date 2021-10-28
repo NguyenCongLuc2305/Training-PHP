@@ -5,7 +5,7 @@ error_reporting(E_ALL);
 $mod='';
 ?>
 <!DOCTYPE html>
-<!-- saved from url=(0018)javascript:void(); -->
+
 <html lang="vi" itemscope="itemscope" itemtype="https://schema.org/WebPage">
 
 <head>
@@ -89,18 +89,18 @@ $mod='';
             ?>
             <?php
 
-            if (isset($_GET['mod'])) {
+//            if (isset($_GET['mod'])) {
+//
+//                $mod=$_GET['mod'];
+//            }
+//            if($mod=='')$mod='home';
+//            $mod=str_replace('../','',$mod);
+//            if(is_file("{$mod}.php"))
+//                include("{$mod}.php");
+//            else
+//                echo 'Invalid URL';
 
-                $mod=$_GET['mod'];
-            }
-            if($mod=='')$mod='home';
-            $mod=str_replace('../','',$mod);
-            if(is_file("{$mod}.php"))
-                include("{$mod}.php");
-            else
-                echo 'Invalid URL';
-
-//            include ("home.php");
+            include ("home.php");
             ?>
             <?php
             include("sidebar.php");

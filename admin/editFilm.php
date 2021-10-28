@@ -378,11 +378,6 @@ if (basename($row['image'] != basename($_FILES["image"]["name"]))) {
 }
 
 
-
-
-
-
-
 $name = $_POST["film-name"];
 $status = $_POST["status"];
 $director = $_POST["director"];

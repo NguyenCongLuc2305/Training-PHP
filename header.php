@@ -34,7 +34,7 @@
 
             <form method="post" action="">
                 <button id="logout" name="log_out">Đăng xuất</button>
-                <a rel="nofollow" href="info_account.php">Thay đổi thông tin</a></div>
+<!--                <a rel="nofollow" href="info_account.php">Thay đổi thông tin</a></div>-->
         <span type="text" style="margin-top:10px">&nbsp&nbsp Xin chào <?php echo $_SESSION["username"]?>
   </span>
         <?php } ?>
