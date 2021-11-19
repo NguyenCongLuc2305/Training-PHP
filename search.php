@@ -24,7 +24,7 @@ if (isset($_POST['kw'])) {
                     while($r=mysqli_fetch_assoc($query)){
                         ?>
                         <li data-liked="852" data-views="<?php echo $r['num_view'] ?>">
-                            <div class="inner"><a href="?mod=detail&film_id=<?php echo $r['id'] ?>" title="<?php echo $r['name'] ?>"><img src="<?php echo $r['image'] ?>"
+                            <div class="inner"><a href="?mod=detail&film_id=<?php echo $r['id'] ?>" title="<?php echo $r['name'] ?>"><img src="admin/uploads/images/<?php echo $r['image'] ?>"
                                                                                                                                           alt="<?php echo $r['name'] ?>"></a>
                                 <div class="info">
                                     <div class="name"><a href="?mod=detail&film_id=<?php echo $r['id'] ?>" title="<?php echo $r['name'] ?>"><?php echo $r['name'] ?></a></div>

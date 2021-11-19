@@ -1,6 +1,6 @@
 <div id="header">
     <div class="container">
-        <h1 id="logo"><a href="?mod=home" title="Xem Phim">Xem phim</a></h1>
+        <h1 id="logo"><img src="images/avatar/pixlr-bg-result.png" style=" margin-left: 50px;width: 100px;height: 60px"></h1>
         <div id="search">
             <form method="post" action="?mod=search">
                 <input type="text" autocomplete="off" name="kw" placeholder="Tìm phim..." class="keyword">
@@ -116,6 +116,6 @@ if(isset($_POST["log_out"])){
     </ul>
 </div>
 <div id="nav2">
-    <div class="container">
+    <div class="container" >
         <h2 class="title">Xem phim online chất lượng cao</h2></div>
 </div>

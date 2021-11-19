@@ -12,20 +12,23 @@ if(isset($_POST["btn_login"])){
     $username = addslashes($username);
     $password = strip_tags($password);
     $password = addslashes($password);
-    if ($username == "" | $password == "") {?><script>
-        alert("username và password bạn không được để trống!")
-        alert("Location:index.php");
-    </script>
-
+    if ($username == "" | $password == "") {?>
+        <script>
+        window.alert("username và password bạn không được để trống!");
+        history.back();
+        </script>
         <?php
+
     }
     else{
         $sql = "SELECT * FROM users WHERE username = '$username'";
         $result = mysqli_query($link,$sql);
         if(!$result || (mysqli_num_rows($result) < 1)){?>
             <script>
-                alert("Username không đúng");
+                window.alert("Username hoặc Passwork không đúng");
+                history.back();
             </script>
+
             <?php
         }
         $dbarray = mysqli_fetch_array($result);
@@ -35,22 +38,21 @@ if(isset($_POST["btn_login"])){
             $_SESSION['password'] = $password;
 
             header('Location:admin/manageFilm.php');
-            ?>
-                <script>
-                    alert('Login Success !!!')
-                </script>
-            <?php
+//            ?>
+<!--                <script>-->
+<!--                    window.alert('Login Success !!!');-->
+<!--                </script>-->
+<!--            --><?php
 
 
         }
-        else{
-            header('Location:index.php');
-            ?>
-            <script>
-                alert('Password failure');
-            </script>
-            <?php
-        }
+//        else{ ?>
+<!--            <script>-->
+<!--                window.alert("Username hoặc Passwork không đúng");-->
+<!--                history.back();-->
+<!--            </script>-->
+<!--            --><?php
+//        }
     }
 }
 ?>

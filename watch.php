@@ -24,7 +24,7 @@ $r=mysqli_fetch_assoc($query);
                         $query = mysqli_query($link, $sql2);
                         $r2=mysqli_fetch_assoc($query);
                         ?>
-                        <a href="?mod=list&type=<?php echo $r2['handle'] ?>&year=2018"><?php echo $r2['name']?></a>
+<!--                        <a href="?mod=list&type=--><?php //echo $r2['handle'] ?><!--"--><?php //echo $r2['name']?><!--</a>-->
                     </li>
                     /
                     <?php

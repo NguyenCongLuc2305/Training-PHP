@@ -92,19 +92,17 @@ $mod = '';
         include("movie-hot.php");
         ?>
         <?php
+                    if (isset($_GET['mod'])) {
 
-        //            if (isset($_GET['mod'])) {
-        //
-        //                $mod=$_GET['mod'];
-        //            }
-        //            if($mod=='')$mod='home';
-        //            $mod=str_replace('../','',$mod);
-        //            if(is_file("{$mod}.php"))
-        //                include("{$mod}.php");
-        //            else
-        //                echo 'Invalid URL';
+                        $mod=$_GET['mod'];
+                    }
+                    if($mod=='')$mod='home';
+                    $mod=str_replace('../','',$mod);
+                    if(is_file("{$mod}.php"))
+                        include("{$mod}.php");
+                    else
+                        echo 'Invalid URL';
 
-        include("home.php");
         ?>
         <?php
         include("sidebar.php");

@@ -329,7 +329,7 @@ if (isset($_POST["button_update"])) {
     <h3 style="font-size:30px;text-align:center; background-color: black;margin-bottom:0px;margin-top:0px;">Đăng kí
         thành viên</h3>
 
-    <div class="form-update">
+    <div class="form-update" style="background: black">
         <form method="post" id="form-update" name="form-update" class="form-horizontal" action="" role="form" style="
     padding: 20px;">
 

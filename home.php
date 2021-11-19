@@ -1,4 +1,4 @@
-<div id="content">
+    <div id="content">
     <div class="block" id="movie-recommend">
         <div class="col">
             <div class="blocktitle">
