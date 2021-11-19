@@ -82,16 +82,16 @@ $r=mysqli_fetch_assoc($query);
     </div>
     <div  id="server-list">
         <div class="row">
-            <div class="col-sm-3">
-                Server
+            <div class="col-sm-1">
+                Mô tả phim :
             </div>
-            <div class="col-sm-9">
+            <div class="col-sm-11">
                 <div class="row">
                     <?php
                     $query = mysqli_query($link, "select * from `film` where `id` = '$film_id'");
                     while($r4 = mysqli_fetch_assoc($query)){
                         ?>
-                        <a href="?mod=watch&film_id=<?php echo $r4['film_id'] ?>&name=<?php echo $r4['name'] ?>" title="<?php echo $r4['name'] ?>" class="button btn-secondary seat"><?php echo $r4['description'] ?></a>
+                       <?php echo $r4['description'] ?>
                     <?php } ?>
                 </div>
             </div>
