@@ -66,6 +66,14 @@
                         <label class="notifyerror" style="visibility: hidden; height: 0px" id="phoneerror"></label>
                     </div>
                 </div>
+                <div class="form-group">
+                    <label class="col-lg-3 control-label">User_type</label>
+                    <input type="radio" name="usertype" id="usertype" value="68" />
+                    <label for="contact_email">Manage</label>
+
+                    <input type="radio" name="usertype" id="usertype" value="1" checked />
+                    <label for="contact_phone">User</label>
+                </div>
 
                 <div class="col-offset-3 col-lg-10">
                     <button type="submit" class="btn btn-primary" id="button_update" name="button_update">Đăng kí </button>
@@ -85,14 +93,15 @@ if(isset($_POST["button_update"])){
     echo $username;
     $hash = password_hash($password, PASSWORD_BCRYPT);
     $phone = $_POST["phone"];
+    $usertype = $_POST["usertype"];
 
-    $sql = "INSERT INTO users (username,password,phone)
-                        VALUES ('$username','$hash','$phone')";
+    $sql = "INSERT INTO users (username,password,phone,usertype)
+                        VALUES ('$username','$hash','$phone','$usertype')";
 
     //debug
-    echo "<pre>";
-    print_r($sql);
-    echo "</pre>";
+//    echo "<pre>";
+//    print_r($sql);
+//    echo "</pre>";
 
     mysqli_query($link,$sql);
 

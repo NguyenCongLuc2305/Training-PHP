@@ -44,15 +44,23 @@ if(isset($_POST["btn_login"])){
 <!--                </script>-->
 <!--            --><?php
 
+            if($dbarray['usertype'] == 68){
+                header('Location:admin/manageFilm.php');
+            }
+            else{
+                //member
+                header('Location:index.php');
+            }
+
 
         }
-//        else{ ?>
-<!--            <script>-->
-<!--                window.alert("Username hoặc Passwork không đúng");-->
-<!--                history.back();-->
-<!--            </script>-->
-<!--            --><?php
-//        }
+        else{ ?>
+            <script>
+                window.alert("Username hoặc Passwork không đúng");
+                history.back();
+            </script>
+            <?php
+        }
     }
 }
 ?>

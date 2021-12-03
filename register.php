@@ -57,7 +57,7 @@ if (isset($_POST["button_update"])) {
 
 </head>
 <body style="position: relative;">
-<div id="wrapper">
+<div id="wrapper" style="background: black">
     <?php
     include("header.php");
     ?>

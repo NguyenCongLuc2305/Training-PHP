@@ -90,7 +90,17 @@ if (mysqli_num_rows($result) == 0) {
                         <label class="notifyerror" style="visibility: hidden; height: 0px" id="phoneerror"></label>
                     </div>
                 </div>
+                <div class="form-group">
 
+                    <label class="col-lg-3 control-label">User_type</label>
+                    <input type="radio" name="usertype" id="usertype" value="68" <?php echo ( $row["usertype"] == 68) ?  "checked" : "" ;  ?> />
+                    <label for="contact_email">Manage</label>
+
+
+                    <input type="radio" name="usertype" id="usertype" value="1" <?php echo ( $row["usertype"] == 1) ?  "checked" : "" ;  ?>  />
+                    <label for="contact_phone">User</label>
+                </div>
+                    <br><br>
                 <div class="col-offset-3 col-lg-10">
                     <div class="col-lg-3"></div>
                     <div class="col-lg-7">
@@ -112,6 +122,7 @@ $username = $_POST["username"];
 $password = $_POST["password"];
 $hash = password_hash($password, PASSWORD_BCRYPT);
 $phone = $_POST["phone"];
+$usertype = $_POST["usertype"];
 
 //thực hiện việc lưu trữ dữ liệu vào db
 // edit != insert
@@ -125,11 +136,9 @@ if(mysqli_num_rows($check) <= 0){ ?>
 <?php
 }
 else{
-$sql = "UPDATE users SET username='$username', password='$hash',phone = '$phone' WHERE id = $userID";
+$sql = "UPDATE users SET username='$username', password='$hash',phone = '$phone',usertype = '$usertype' WHERE id = $userID";
 
-echo "<pre>";
-print_r($sql);
-echo "</pre>";
+
 
 $result = mysqli_query($link,$sql);
 
