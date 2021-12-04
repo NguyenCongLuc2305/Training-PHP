@@ -7,7 +7,7 @@ require('libs/db.php');
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Search Film</title>
+    <title>Search user</title>
 
     <link rel="stylesheet" type="text/css" href="asset/css/bootstrap.min.css" />
     <link rel="stylesheet" type="text/css" href="asset/font-awesome/css/font-awesome.min.css" />
@@ -24,7 +24,7 @@ require('libs/db.php');
     ?>
     <div class="container">
         <div class="row" id="search-user">
-            <form method="post" action="searchFilm.php">
+            <form method="post" action="searchUser.php">
                 <div class="row">
                     <div class="col-md-1"></div>
                     <div class="col-md-7">
@@ -42,32 +42,30 @@ require('libs/db.php');
             <div class="col-md-1"></div>
             <div class="col-md-8">
                 <!-- get from database -->
+                <?php
+                if(isset($_POST["button_search"])){
+                $name = isset($_POST["qry"]) ? $_POST["qry"] : '';
+
+                $sql = "SELECT * FROM users WHERE username LIKE '%{$name}%'";
+
+                $result = mysqli_query($link, $sql);
+                if (mysqli_num_rows($result) > 0) { ?>
                 <!-- output data of each row -->
                 <table class="table" style="margin: 10px 0px">
                     <thead>
                     <tr>
                         <th scope="col">ID</th>
-                        <th scope="col">Name</th>
-                        <th scope="col">Director</th>
-                        <th scope="col">Actor</th>
-                        <th scope="col">Description</th>
+                        <th scope="col">Username</th>
+                        <th scope="col">Phone</th>
                         <th scope="col">Action</th>
                     </tr>
                     </thead>
                     <tbody>
-                    <?php
-                    $item_per_page = 4;
-                    $current_page = 1;
-                    $offset = ($current_page - 1) * $item_per_page;
-                    $sql = 'select * from `film` order by `id` DESC limit 4 offset '.$offset;
-                    $query = mysqli_query($link, $sql);
-                    while($row=mysqli_fetch_assoc($query)){ ?>
+                    <?php while($row = mysqli_fetch_assoc($result)) {  ?>
                         <tr>
                             <th> <?php echo $row["id"] ?> </th>
-                            <th> <?php echo $row["name"] ?> </th>
-                            <th> <?php echo $row["director"] ?> </th>
-                            <th> <?php echo $row["actor"] ?> </th>
-                            <th> <?php echo $row["description"] ?> </th>
+                            <th> <?php echo $row["username"] ?> </th>
+                            <th> <?php echo $row["phone"] ?> </th>
                             <td>
                                 <button type="button" class="btn btn-info" name="edit" onclick="edit(this)">Edit</button>
                                 <button type="button" class="btn btn-danger" name="delete" onclick="del(this)">Delete</button>
@@ -75,7 +73,11 @@ require('libs/db.php');
                         </tr>
                         <?php
                     }
-                    mysqli_close($link);
+                    } else {
+                        echo "No user like ".$name;
+                    }
+                    }
+                    //                    mysqli_close($link);
                     ?>
                     </tbody>
                 </table>
@@ -89,14 +91,14 @@ require('libs/db.php');
         var tr = params.parentElement.parentElement;
         var td0= tr.cells.item(0).innerHTML;
         td0 = td0.replace(' ','' ); //id của user có space ???
-        location.href= "editFilm.php?id=" + td0;
+        location.href= "editUser.php?id=" + td0;
     };
     function del(params) {
-        if(confirm("Bạn có chắc muốn xóa film này?")){
+        if(confirm("Bạn có chắc muốn xóa user này?")){
             var tr = params.parentElement.parentElement;
             var td0= tr.cells.item(0).innerHTML;
             td0 = td0.replace(' ','' ); //id của user có space ???
-            location.href= "deleteFilm.php?id=" + td0;
+            location.href= "deleteUser.php?id=" + td0;
         }
     };
 </script>

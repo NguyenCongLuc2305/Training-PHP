@@ -24,7 +24,7 @@ require('libs/db.php');
     ?>
     <div class="container">
         <div class="row" id="search-user">
-            <form method="post" action="searchFilm.php">
+            <form method="post">
                 <div class="row">
                     <div class="col-md-1"></div>
                     <div class="col-md-7">
@@ -42,6 +42,18 @@ require('libs/db.php');
             <div class="col-md-1"></div>
             <div class="col-md-8">
                 <!-- get from database -->
+                <?php
+                if(isset($_POST["button_search"])){
+                $qry = isset($_POST["qry"]) ? $_POST["qry"] : '';
+
+                $sql_name = "SELECT * FROM film WHERE name LIKE '%{$qry}%'";
+                $sql_director = "SELECT * FROM film WHERE director LIKE '%{$qry}%'";
+                $sql_actor = "SELECT * FROM film WHERE actor LIKE '%{$qry}%'";
+                $sql_description = "SELECT * FROM film WHERE description LIKE '%{$qry}%'";
+
+                $sql = $sql_name  . " UNION ".$sql_director . " UNION ".$sql_actor. " UNION ". $sql_description;
+                $result = mysqli_query($link, $sql);
+                if (mysqli_num_rows($result) > 0) { ?>
                 <!-- output data of each row -->
                 <table class="table" style="margin: 10px 0px">
                     <thead>
@@ -55,13 +67,7 @@ require('libs/db.php');
                     </tr>
                     </thead>
                     <tbody>
-                    <?php
-                    $item_per_page = 4;
-                    $current_page = 1;
-                    $offset = ($current_page - 1) * $item_per_page;
-                    $sql = 'select * from `film` order by `id` DESC limit 4 offset '.$offset;
-                    $query = mysqli_query($link, $sql);
-                    while($row=mysqli_fetch_assoc($query)){ ?>
+                    <?php while($row = mysqli_fetch_assoc($result)) {  ?>
                         <tr>
                             <th> <?php echo $row["id"] ?> </th>
                             <th> <?php echo $row["name"] ?> </th>
@@ -74,6 +80,10 @@ require('libs/db.php');
                             </td>
                         </tr>
                         <?php
+                    }
+                    } else {
+                        echo "No user like ".$qry;
+                    }
                     }
                     mysqli_close($link);
                     ?>

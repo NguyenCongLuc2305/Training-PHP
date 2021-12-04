@@ -7,7 +7,7 @@ require('libs/db.php');
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Delete user</title>
+    <title>Manage user</title>
 
     <link rel="stylesheet" type="text/css" href="asset/css/bootstrap.min.css" />
     <link rel="stylesheet" type="text/css" href="asset/font-awesome/css/font-awesome.min.css" />
@@ -24,7 +24,7 @@ require('libs/db.php');
     ?>
     <div class="container">
         <div class="row" id="search-user">
-            <form method="post">
+            <form method="post" action="searchUser.php">
                 <div class="row">
                     <div class="col-md-1"></div>
                     <div class="col-md-7">
@@ -41,15 +41,6 @@ require('libs/db.php');
         <div class="row" id="list-user">
             <div class="col-md-1"></div>
             <div class="col-md-8">
-                <!-- get from database -->
-                <?php
-                if(isset($_POST["button_search"])){
-                $name = isset($_POST["user"]) ? $_POST["user"] : '';
-
-                $sql = "SELECT * FROM users WHERE username LIKE '%{$name}%'";
-
-                $result = mysqli_query($link, $sql);
-                if (mysqli_num_rows($result) > 0) { ?>
                 <!-- output data of each row -->
                 <table class="table" style="margin: 10px 0px">
                     <thead>
@@ -61,21 +52,19 @@ require('libs/db.php');
                     </tr>
                     </thead>
                     <tbody>
-                    <?php while($row = mysqli_fetch_assoc($result)) {  ?>
+                    <?php    $sql = 'select * from `users`';
+                    $query = mysqli_query($link, $sql);
+                    while($row=mysqli_fetch_assoc($query)){ ?>
                         <tr>
-                            <th> <?php echo $row["id"] ?> </th>
-                            <th> <?php echo $row["username"] ?> </th>
-                            <th> <?php echo $row["phone"] ?> </th>
+                            <th> <?php echo $row['id'] ?> </th>
+                            <th> <?php echo $row['username'] ?> </th>
+                            <th> <?php echo $row['phone'] ?> </th>
                             <td>
                                 <button type="button" class="btn btn-info" name="edit" onclick="edit(this)">Edit</button>
                                 <button type="button" class="btn btn-danger" name="delete" onclick="del(this)">Delete</button>
                             </td>
                         </tr>
                         <?php
-                    }
-                    } else {
-                        echo "No user like ".$name;
-                    }
                     }
                     mysqli_close($link);
                     ?>
