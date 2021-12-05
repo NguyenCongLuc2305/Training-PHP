@@ -19,6 +19,7 @@ require('libs/db.php');
 </head>
 <body>
 <div id="wrapper">
+
     <?php
     include("common.php");
     ?>
@@ -40,7 +41,7 @@ require('libs/db.php');
         </div>
         <div class="row" id="list-user">
             <div class="col-md-1"></div>
-            <div class="col-md-8">
+            <div class="col-md-10">
                 <!-- get from database -->
                 <!-- output data of each row -->
                 <table class="table" style="margin: 10px 0px">
@@ -56,10 +57,13 @@ require('libs/db.php');
                     </thead>
                     <tbody>
                     <?php
-                    $item_per_page = 4;
-                    $current_page = 1;
+                    $item_per_page = !empty($_GET['per_page']) ? $_GET['per_page']:4;
+                    $current_page = !empty($_GET['page']) ? $_GET['page']:1;
                     $offset = ($current_page - 1) * $item_per_page;
-                    $sql = 'select * from `film` order by `id` DESC limit 4 offset '.$offset;
+                    $sql = 'select * from `film` order by `id` DESC limit ' .$item_per_page. ' offset '.$offset;
+                    $totalRecords = mysqli_query($link,"select * from `film`");
+                    $totalRecords = $totalRecords -> num_rows;
+                    $totalPages = ceil($totalRecords / $item_per_page);
                     $query = mysqli_query($link, $sql);
                     while($row=mysqli_fetch_assoc($query)){ ?>
                         <tr>
@@ -79,6 +83,7 @@ require('libs/db.php');
                     ?>
                     </tbody>
                 </table>
+                <?php include 'pagination.php'?>
             </div>
 
         </div>

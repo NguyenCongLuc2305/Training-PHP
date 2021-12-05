@@ -25,7 +25,7 @@ if(isset($_POST["btn_login"])){
         $result = mysqli_query($link,$sql);
         if(!$result || (mysqli_num_rows($result) < 1)){?>
             <script>
-                window.alert("Username hoặc Passwork không đúng");
+                window.alert("Username không đúng");
                 history.back();
             </script>
 
@@ -56,10 +56,16 @@ if(isset($_POST["btn_login"])){
         }
         else{ ?>
             <script>
+
                 window.alert("Username hoặc Passwork không đúng");
                 history.back();
             </script>
             <?php
+//
+//            echo "<script>
+//             alert('Username hoặc Passwork không đúng');
+//             history.back();
+//         </script>";
         }
     }
 }

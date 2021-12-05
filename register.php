@@ -56,6 +56,51 @@ if (isset($_POST["button_update"])) {
     <link href="css/style.min.css" type="text/css" rel="stylesheet">
 
 </head>
+<style type="text/css" media="screen">
+    .owl-theme .owl-controls .owl-page {
+        display: inline-block;
+    }
+
+    .owl-theme .owl-controls .owl-page span {
+        background: none repeat scroll 0 0 #869791;
+        border-radius: 20px;
+        display: block;
+        height: 12px;
+        margin: 5px 7px;
+        opacity: 0.5;
+        width: 12px;
+    }
+</style>
+<style media="screen" type="text/css">
+    .owl-theme .owl-controls .owl-page {
+        display: inline-block;
+    }
+
+    .owl-theme .owl-controls .owl-page span {
+        background: none repeat scroll 0 0 #869791;
+        border-radius: 20px;
+        display: block;
+        height: 12px;
+        margin: 5px 7px;
+        opacity: 0.5;
+        width: 12px;
+    }
+
+    .owl-theme .owl-controls .active span {
+        background-color: white !important;
+    }
+
+    .owl-theme .owl-pagination {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+
+    #wrapper {
+        background-color: black;
+        width: 100%;
+    }
+</style>
 <body style="position: relative;">
 <div id="wrapper" style="background: black">
     <?php
